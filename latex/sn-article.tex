@@ -174,6 +174,36 @@ In the tourism economics domain, \cite{mir2026decoding} applied survival analysi
 \section{Methodology} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Dataset Description}
+To evaluate explainable time-to-event predictions in hotel cancellations, this study utilizes two distinct empirical datasets containing individual reservation records. The first dataset, \texttt{hotels.csv}, captures detailed PMS records from a resort hotel and a city hotel in Portugal, comprising 119,390 original observations. The second dataset, \texttt{hotel\_reservations.csv}, represents 36,275 bookings with structured customer attributes. 
+
+For the time-to-event modeling framework, the survival time ($T$) and censoring status ($\delta$) are constructed differently based on the temporal resolution of each dataset:
+\begin{itemize}
+    \item \textbf{Dataset 1 (\texttt{hotels.csv}):} Features explicit updates to reservation statuses via a status date variable. The duration is calculated as the time elapsed from the reservation date (derived using arrival date and lead time) to the cancellation date ($\delta=1$) or the scheduled check-in date ($\delta=0$).
+    \item \textbf{Dataset 2 (\texttt{hotel\_reservations.csv}):} Lacks explicit status update dates. For canceled bookings ($\delta=1$), the survival time is estimated as half of the lead time ($\text{lead\_time} / 2$). Active or non-canceled bookings ($\delta=0$) are censored at their full lead time.
+\end{itemize}
+
+A detailed structural comparison of the datasets is summarized in Table~\ref{tab:dataset_comparison}.
+
+\begin{table}[htbp]
+\caption{Structural and statistical comparison of the empirical booking datasets}\label{tab:dataset_comparison}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Feature / Property & Dataset 1 (\texttt{hotels.csv}) & Dataset 2 (\texttt{hotel\_reservations.csv}) \\
+\midrule
+Total Observations & 119,390 & 36,275 \\
+Total Features & 32 & 19 \\
+Cancellation Rate (\%) & 37.04\% & 32.76\% \\
+Survival Time Construction ($T$) & Actual duration (days) & Calculated duration ($Lead\ Time$ or $Lead\ Time / 2$) \\
+Key Explanatory Variables & Lead time, ADR, Room type, & Lead time, Average price per room, \\
+ & Booking changes, Customer type & No. of special requests, Repeated guest \\
+Target Event & Cancellation ($\delta = 1$) & Cancellation ($\delta = 1$) \\
+Censored Event & Active / Check-in ($\delta = 0$) & Not Canceled ($\delta = 0$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
