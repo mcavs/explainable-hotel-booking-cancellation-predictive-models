@@ -1,0 +1,255 @@
+% Version 3.1 December 2024
+% See section 11 of the User Manual for version history
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+
+%%=======================================================%%
+%% to print line numbers in the margin use lineno option %%
+%%=======================================================%%
+
+%%\documentclass[lineno,pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%=========================================================================================%%
+%% the documentclass is set to pdflatex as default. You can delete it if not appropriate.  %%
+%%=========================================================================================%%
+
+%%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove Numbered in the optional parenthesis. 
+%%The option is available for: sn-basic.bst, sn-chicago.bst%  
+ 
+%%\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+%%\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
+\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+%%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[pdflatex,sn-vancouver-num]{sn-jnl}% Vancouver Numbered Reference Style
+%%\documentclass[pdflatex,sn-vancouver-ay]{sn-jnl}% Vancouver Author Year Reference Style
+%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style
+%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+
+%%%% Standard Packages
+%%<additional latex packages if required can be included here>
+
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+%%%%
+
+%%%%%=============================================================================%%%%
+%%%%  Remarks: This template is provided to aid authors with the preparation
+%%%%  of original research articles intended for submission to journals published 
+%%%%  by Springer Nature. The guidance has been prepared in partnership with 
+%%%%  production teams to conform to Springer Nature technical requirements. 
+%%%%  Editorial and presentation requirements differ among journal portfolios and 
+%%%%  research disciplines. You may find sections in this template are irrelevant 
+%%%%  to your work and are empowered to omit any such section if allowed by the 
+%%%%  journal you intend to submit to. The submission guidelines and policies 
+%%%%  of the journal take precedence. A detailed User Manual is available in the 
+%%%%  template package for technical guidance.
+%%%%%=============================================================================%%%%
+
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+\begin{document}
+
+\title[Article Title]{Article Title}
+
+%%=============================================================%%
+%% GivenName	-> \fnm{Joergen W.}
+%% Particle	-> \spfx{van der} -> surname prefix
+%% FamilyName	-> \sur{Ploeg}
+%% Suffix	-> \sfx{IV}
+%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
+%%  \sfx{IV}}\email{iauthor@gmail.com}
+%%=============================================================%%
+
+\author*[]{\fnm{Mustafa} \sur{Cavus}}\email{mustafacavus@eskisehir.edu.tr}
+
+%\author[2,3]{\fnm{Second} \sur{Author}}\email{iiauthor@gmail.com}
+%\equalcont{These authors contributed equally to this work.}
+
+%\author[1,2]{\fnm{Third} \sur{Author}}\email{iiiauthor@gmail.com}
+%\equalcont{These authors contributed equally to this work.}
+
+\affil[]{\orgname{Eskisehir Technical University}, \orgdiv{Department of Statistics}, \postcode{26555}, \city{Eskisehir}, \country{Türkiye}}
+
+%\affil[2]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{10587}, \state{State}, \country{Country}}}
+
+%\affil[3]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{610101}, \state{State}, \country{Country}}}
+
+%%==================================%%
+%% Sample for unstructured abstract %%
+%%==================================%%
+
+\abstract{}
+
+\keywords{hotel booking cancellation, explainable AI, responsible AI, Keyword4}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:introduction}
+    
+In the contemporary hospitality and tourism sectors, demand forecasting stands as a foundational pillar for strategic capacity management \citep{antonio2017predicting}, resource allocation, and dynamic pricing optimization \citep{ampountolas2025predicting}. Unlike traditional inventory-based businesses, hotel room reservations represent highly perishable services where an unallocated room on any given calendar night results in an absolute loss of potential revenue \citep{antonio2019big}, meaning hotels cannot recover the value of unsold capacity once a night passes \citep{mir2026decoding}. Consequently, revenue management departments rely on predictive analytics to maintain occupancy levels \citep{yoo2024predicting} and capture maximum market value through dynamic inventory controls \citep{liu2025explainable}. However, the accuracy of short-term demand signals is fundamentally distorted by hotel booking cancellations. These cancellations compromise forecasting reliability \citep{liu2023hospitality, luo2025hotel} and account for operational losses estimated at approximately 20\% of hotel revenues \citep{falk2018modelling}.
+    
+The widespread adoption of online travel agencies and digital booking channels has structurally altered consumer behavior by introducing high price transparency and lowering the transactional barriers to canceling previously confirmed reservations. Prospective travelers frequently exhibit opportunistic behaviors, leveraging flexible cancellation policies to secure multi-hotel alternatives \citep{chen2023prediction} or engaging in intertemporal arbitrage by rebooking when lower rates emerge \citep{mir2026decoding} closer to their scheduled arrival date \citep{ampountolas2025predicting}. To hedge against this persistent operational risk, hotels conventionally enforce restrictive, non-refundable penalty windows \citep{yang2024predicting} or deploy overbooking quotas \citep{antonio2017predicting}. Nevertheless, these traditional practices often yield negative externalities, such as eroding customer satisfaction, triggering high relocation costs, and damaging the brand reputation of the property in competitive digital ecosystems \citep{falk2018modelling}.
+    
+Within this context, positioning the cancellation problem correctly within the predictive modeling architecture is crucial. Traditional hotel booking cancellation prediction studies generally treat the problem as a static binary classification task and focus solely on predicting whether a booking will be cancelled or not. However, this conventional approach inherently ignores the temporal dynamics and instantaneous risk changes within the period leading up to the consumption date. Furthermore, reservations that are active in the system with check-in dates yet to occur create structural uncertainties in the dataset, known as right-censored data, which require time-to-event approaches rather than static classification \citep{krzyzinski2023survshapt}. Standard machine learning classifiers introduce systematic predictive bias because they are forced to label these censored, incomplete observations as not cancelled. Conversely, survival or time-to-event models, widely used in the medical field to evaluate time-dependent outcomes \citep{kovalev2020survlime}, structurally improve model accuracy and reliability by mathematically integrating these incomplete observations into the analytical framework \citep{langbein2025interpretable}.
+    
+Estimating the survival function of reservations and their instantaneous hazard rate over a time axis provides hospitality enterprises with a dynamic strategic roadmap. Predicting precisely when a cancellation event will occur enables revenue management systems to optimize overbooking quotas and determine re-marketing time windows for rooms at high risk of cancellation \citep{mir2026decoding}. Concurrently, these temporal outputs allow operational systems to identify the optimal timing in proactive customer retention campaigns, thereby minimizing capacity uncertainty \citep{ampountolas2025predicting} and reducing overall mitigation risks \citep{antonio2017predicting}.
+    
+Despite the clear benefits of survival analysis, the adoption of complex survival algorithms, e.g., Random Survival Forests, gradient boosted survival trees, or regularized Cox models, has been hindered by their \textit{black-box} nature. In the hospitality sector, where algorithmic decisions directly influence customer relations, pricing, and resource allocation, transparency is a critical requirement. Managers are hesitant to deploy models whose predictions cannot be interpreted or audited. While explainable artificial intelligence (XAI) frameworks have emerged to explain classification models, explaining time-to-event predictions remains a challenge due to the continuous and multi-dimensional nature of survival curves. 
+    
+To bridge these gaps, this paper introduces a comprehensive, explainable time-to-event modeling framework to decode hotel cancellation behavior. First, we conduct a benchmark evaluation comparing 16 survival analysis models—spanning semi-parametric (Cox families), parametric (Accelerated Failure Time -AFT models), and machine learning (Survival Trees, Random Survival Forests, GBM, and XGBoost survival models) architectures—across two large-scale  empirical hotel datasets. Second, we integrate advanced time-dependent XAI tools, building upon the local explanation formulation of SurvLIME  \citep{kovalev2020survlime} and the time-dependent Shapley attribution of SurvSHAP \citep{krzyzinski2023survshapt}, to transition the analytical focus away from black-box classification toward continuous, explainable risk curves. By mapping the reservation lifecycle along a continuous time axis, this research uncovers how dynamic consumer attributes and pricing structures shift cancellation risk over time, providing a reliable infrastructure to optimize capacity, enforce algorithmic transparency, and minimize revenue leakage under uncertainty.
+  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}
+\label{sec:related_work}
+
+The literature on hotel booking cancellation prediction has evolved from classical statistical models to machine learning classifiers, and recently, toward survival analysis frameworks and interpretability methods. This section reviews these developments under three thematic categories.
+
+\subsection{Machine Learning Classifiers and Feature Interactions}
+Early predictions of hotel booking cancellations relied on classification models trained on historical property management system (PMS) data. \cite{antonio2017predicting} applied data mining techniques and decision trees to reservation data from resort and city hotels, demonstrating that individual booking cancellations could be predicted with over 90\% accuracy. Following this, \cite{falk2018modelling} used a probit model on a multi-hotel dataset to identify booking channels as primary determinants of cancellation, showing that online travel agency reservations exhibit significantly higher cancellation rates than traditional bookings. 
+
+Subsequent studies focused on expanding feature spaces and modeling non-linear interactions. \cite{antonio2019big} combined PMS records with external indicators, such as weather conditions and pricing trends, showing that incorporating external features improves net demand forecasting. To capture non-linear dependencies without losing interpretability, \cite{chen2023prediction} proposed a hybrid framework combining machine learning classifiers with Bayesian networks. In parallel, researchers focused on business-oriented metrics rather than standard classification accuracy. \cite{liu2023hospitality} developed a profit-driven prediction framework to optimize the financial returns of customer retention campaigns. \cite{liu2025explainable} extended this by proposing a heterogeneous stacking ensemble model designed to maximize revenue under different mitigation costs.
+
+Model benchmarks also shifted toward ensemble architectures. \cite{yoo2024predicting} evaluated multiple classifiers and showed that XGBoost consistently outperforms traditional logistic regression in identifying cancellation patterns. \cite{yang2024predicting} integrated decision trees with feed-forward neural networks to model tabular reservation data, while \cite{luo2025hotel} applied gradient boosting to large-scale datasets, confirming lead time and deposit type as key predictive features. Recently, \cite{ampountolas2025predicting} analyzed a five-year booking dataset and addressed the trade-off between precision and recall by proposing a hybrid model combining gradient boosting and Ridge regression to minimize false negative rates.
+
+\subsection{Explainable AI in Hospitality Prediction}
+Because hospitality operations require transparent decision-making, recent studies have integrated post-hoc explainability methods into cancellation models to extract domain-specific insights. \cite{gomez2025machine} used SHAP to interpret global and local feature impacts in hotel booking models, establishing that lead time, special requests, and historical cancellations have non-linear effects on final predictions.
+\cite{herrera2024machine} applied TreeSHAP to tree-based ensemble models, revealing that the distribution channel and lead time are the primary
+contributors to the predicted cancellation risk across distinct seasonal cohorts.
+
+To balance predictive performance and model understandability, recent architectures combine stacking ensemble models with multi-method explanations. \cite{talal2025hotel} developed a stacked generalization meta-model achieving 96\% prediction accuracy and mapped global and local feature contributions using Kernel SHAP, Tree SHAP, and LIME. Their analysis showed how variables like customer type and deposit requirements interact at an individual level to escalate cancellation probabilities. 
+
+Furthermore, explainability has been linked directly to financial decision-making in hospitality operations. \cite{liu2025explainable} proposed a heterogeneous stacking classifier. They combined global SHAP values with profit-sensitive permutation feature importances, demonstrating that the features carrying the highest predictive weight do not necessarily align with those yielding the maximum financial utility in customer retention campaigns. 
+
+Despite these advancements, standard XAI methods in the hospitality literature are restricted to static classification models. They explain whether a booking will cancel, but fail to explain when the risk shifts over time. This limitation has motivated the integration of survival analysis explainers, which translate static predictions into dynamic risk curves.
+
+\subsection{Survival Analysis and Time-to-Event Modeling}
+Unlike binary classifiers that treat active bookings as non-canceled (introducing right-censoring bias), survival analysis models time-to-event data mathematically. \cite{kovalev2020survlime} developed SurvLIME, which explains survival models locally by approximating cumulative hazard functions using a Cox proportional hazards formulation. To resolve time-dependent variations in feature effects, \cite{krzyzinski2023survshapt} introduced SurvSHAP(t), a model-agnostic framework that calculates time-dependent Shapley values for survival functions. This framework enables the measurement of how a single feature's influence changes or reverses over a continuous time axis. \cite{langbein2025interpretable} unified these methods for machine learning survival analysis, establishing protocols for auditing complex models in censored data environments.
+
+In the tourism economics domain, \cite{mir2026decoding} applied survival analysis and linear probability models to a longitudinal dataset of over two million bookings. Their empirical findings showed that cancellations are not static decisions but strategic actions driven by refundability rules and price-drop monitoring (intertemporal rebooking). This evidence confirms the necessity of using time-dependent hazard rate modeling rather than static classification to optimize capacity and revenue management in hotels.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methodology} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experiments} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Discussions should be brief and focused. In some disciplines use of Discussion or `Conclusion' is interchangeable. It is not mandatory to use both. Some journals prefer a section `Results and Discussion' followed by a section `Conclusion'. Please refer to Journal-level guidance for any specific requirements. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Conclusions may be used to restate your hypothesis or research question, restate your major findings, explain the relevance and the added value of your work, highlight any limitations of your study, describe future directions for research and recommendations. 
+
+%In some disciplines use of Discussion or 'Conclusion' is interchangeable. It is not mandatory to use both. Please refer to Journal-level guidance for any specific requirements. 
+
+\backmatter
+
+%\bmhead{Supplementary information}
+
+%\bmhead{Acknowledgements}
+
+\section*{Declarations}
+
+\noindent \textbf{Funding}\\
+
+\noindent \textbf{Conflict of interest} The authors declare no competing interests.\\
+
+% \noindent \textbf{Ethics approval and consent to participate}\\
+
+% \noindent \textbf{Consent for publication}\\
+
+\noindent \textbf{Data availability} The datasets used in this paper are publicly available online.\\
+
+% \noindent \textbf{Materials availability}\\
+
+\noindent \textbf{Code availability} The codes for reproducing the experiments performed are accessible in the following repository: \url{}.\\
+
+
+\begin{appendices}
+
+\section{Section title of first appendix}\label{secA1}
+
+An appendix contains supplementary information that is not an essential part of the text itself but which may be helpful in providing a more comprehensive understanding of the research problem or it is information that is too cumbersome to be included in the body of the paper.
+
+%%=============================================%%
+%% For submissions to Nature Portfolio Journals %%
+%% please use the heading ``Extended Data''.   %%
+%%=============================================%%
+
+%%=============================================================%%
+%% Sample for another appendix section			       %%
+%%=============================================================%%
+
+%% \section{Example of another appendix section}\label{secA2}%
+%% Appendices may be used for helpful, supporting or essential material that would otherwise 
+%% clutter, break up or be distracting to the text. Appendices can consist of sections, figures, 
+%% tables and equations etc.
+
+\end{appendices}
+
+%%===========================================================================================%%
+%% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
+%% system, please include the references within the manuscript file itself. You may do this  %%
+%% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
+%% file, and delete the associated \verb+\bibliography+ commands.                            %%
+%%===========================================================================================%%
+
+\bibliography{sn-bibliography}% common bib file
+%% if required, the content of .bbl file can be included here once bbl is generated
+%%\input sn-article.bbl
+
+\end{document}
