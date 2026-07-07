@@ -177,46 +177,53 @@ In the tourism economics domain, \cite{mir2026decoding} applied survival analysi
 \subsection{Dataset Profiles and Feature Characterization}
 To evaluate the proposed explainable time-to-event frameworks, we leverage two empirical datasets commonly benchmarked in hospitality demand modeling. Both datasets contain granular, reservation-level transaction records but differ in feature design, sample size, and temporal resolution.
 
-The first dataset, \texttt{hotels.csv} (hereafter Dataset 1), consists of $119,390$ reservations recorded from a Resort Hotel and a City Hotel in Portugal. It contains $32$ variables spanning reservation details, customer demographics, and transactional attributes. The second dataset, \texttt{hotel\_reservations.csv} (hereafter Dataset 2), contains $36,275$ observations with $19$ features capturing customer reservation metrics and preferences. 
+The first dataset, the Hotel Booking Demand dataset (hereafter Dataset 1), was originally introduced by \cite{antonio2019data} and consists of $119,390$ reservations recorded from a Resort Hotel and a City Hotel in Portugal. It contains $32$ variables spanning reservation details, customer demographics, and transactional attributes. The second dataset, the Hotel Reservations dataset (hereafter Dataset 2), was published by \cite{raza2023hotel} and contains $36,275$ observations with $19$ features capturing customer reservation metrics and preferences.
 
-The baseline statistics and domain characteristics of the key predictive variables utilized in the modeling pipelines are defined below:
-\begin{itemize}
-    \item \textbf{Lead Time ($Lead\_Time$):} Continuous variable representing the number of days elapsed between the booking date and the scheduled arrival date. In Dataset 1, it ranges from $0$ to $737$ days ($\mu = 104.01$), whereas in Dataset 2, it ranges from $0$ to $443$ days ($\mu = 85.23$). This is the primary temporal covariate.
-    \item \textbf{Monetary Indicators ($ADR$ / $Avg\_Price\_Per\_Room$):} Continuous metrics tracking pricing structures. Dataset 1 records the Average Daily Rate ($ADR$) ranging from $-6.38$ to $5400.00$ USD ($\mu = 101.83$). Dataset 2 captures the average room price ($Avg\_Price\_Per\_Room$) ranging from $0.00$ to $540.00$ USD ($\mu = 103.42$).
-    \item \textbf{Length of Stay ($Weekend\_Nights$ / $Week\_Nights$):} Continuous values measuring stay duration. Weekend nights range from $0$ to $19$ ($\mu = 0.93$) in Dataset 1, and $0$ to $7$ ($\mu = 0.81$) in Dataset 2. Weekday nights span $0$ to $50$ ($\mu = 2.50$) in Dataset 1, and $0$ to $17$ ($\mu = 2.20$) in Dataset 2.
-    \item \textbf{Party Size ($Adults$ / $Children$):} Discrete variables. Number of adults ranges from $0$ to $55$ ($\mu = 1.86$) in Dataset 1, and $0$ to $4$ ($\mu = 1.84$) in Dataset 2. Children counts range from $0$ to $10$ in both datasets.
-    \item \textbf{Historical Cancellation Behavior ($Previous\_Cancellations$):} Numeric features recording client history. Prior cancellations range from $0$ to $26$ ($\mu = 0.08$) in Dataset 1, and $0$ to $13$ ($\mu = 0.02$) in Dataset 2.
-    \item \textbf{Categorical Contextual Variables:} Includes booking channels (e.g., Online Travel Agencies, Offline Tour Operators, Corporate, Direct), deposit requirements (No Deposit, Non-Refundable, Refundable), and meal plans (Bed \& Breakfast, Half Board, Full Board, Self-Catering).
-\end{itemize}
+To ensure compatibility with the time-to-event modeling framework, the survival duration ($T$) and censoring indicator ($\delta$) are calculated based on the temporal granularity available. In Dataset 1, the exact survival duration is computed as the number of days elapsed between the booking creation date (arrival date minus lead time) and either the status update date (for confirmed cancellations, $\delta = 1$) or the scheduled check-in date (for active check-outs, $\delta = 0$). In Dataset 2, which does not provide status update timestamps, we estimate the survival duration under interval censoring. Specifically, we set $T_i = \text{Lead\_Time}_i / 2$ for canceled reservations ($\delta_i = 1$), which represents a uniform distribution of cancellation timing before check-in, and $T_i = \text{Lead\_Time}_i$ for non-canceled bookings ($\delta_i = 0$).
+
+A detailed statistical characterization of all features across both datasets, including their distribution metrics and categories, is structured in Table~\ref{tab:dataset_comparison}.
 
 \begin{table}[htbp]
 \caption{Detailed profile of empirical booking datasets with feature ranges}\label{tab:dataset_comparison}
+\begin{center}
+\resizebox{\textwidth}{!}{
 \begin{tabular}{@{}llcc@{}}
 \toprule
-Variable Group & Attribute Detail & Dataset 1 (\texttt{hotels.csv}) & Dataset 2 (\texttt{hotel\_res.csv}) \\
+Variable Group & Attribute Detail & Dataset 1 \citep{antonio2019data} & Dataset 2 \citep{raza2023hotel} \\
 \midrule
-\textbf{Data Dimensions} & Observations ($N$) & 119,390 & 36,275 \\
-& Total Predictors ($p$) & 29 (excluding targets) & 17 (excluding targets) \\
+\textbf{Data Dimensions} 
+& Observations ($N$) & 119,390 & 36,275 \\
+& Total Predictors ($p$) & 29 & 17 \\
 & Target Event Rate & 37.04\% (Canceled) & 32.76\% (Canceled) \\
 \midrule
-\textbf{Continuous Metrics} & Lead Time (days) & $[0, 737]$ ($\mu=104.01$) & $[0, 443]$ ($\mu=85.23$) \\
-& Room Price (USD) & $[-6.38, 5400.00]$ ($\mu=101.83$) & $[0.00, 540.00]$ ($\mu=103.42$) \\
+\textbf{Continuous Metrics} 
+& Lead Time (days) & $[0, 737]$ ($\mu=104.01$) & $[0, 443]$ ($\mu=85.23$) \\
+& Room Price (USD) & ADR: $[-6.38, 5400.00]$ ($\mu=101.83$) & Avg. Price: $[0.00, 540.00]$ ($\mu=103.42$) \\
 & Weekend Nights & $[0, 19]$ ($\mu=0.93$) & $[0, 7]$ ($\mu=0.81$) \\
 & Week Nights & $[0, 50]$ ($\mu=2.50$) & $[0, 17]$ ($\mu=2.20$) \\
 \midrule
-\textbf{Discrete / Ordinal} & Adults & $[0, 55]$ ($\mu=1.86$) & $[0, 4]$ ($\mu=1.84$) \\
+\textbf{Discrete / Ordinal} 
+& Adults & $[0, 55]$ ($\mu=1.86$) & $[0, 4]$ ($\mu=1.84$) \\
 & Children & $[0, 10]$ ($\mu=0.10$) & $[0, 10]$ ($\mu=0.11$) \\
 & Prior Cancellations & $[0, 26]$ ($\mu=0.08$) & $[0, 13]$ ($\mu=0.02$) \\
 & Special Requests & $[0, 5]$ ($\mu=0.56$) & $[0, 5]$ ($\mu=0.62$) \\
+& Booking Changes & $[0, 21]$ ($\mu=0.22$) & -- \\
 \midrule
-\textbf{Censoring Schemas} & Survival Time ($T$) & Actual elapsed time (days) & Proxy ($Lead\ Time$, $Lead\ Time / 2$) \\
+\textbf{Categorical Context}
+& Booking Channel & Online TA, Offline TA, Corporate, Direct, Aviation & Online, Offline, Corporate, Aviation, Complementary \\
+& Deposit Requirement & No Deposit, Non-Refundable, Refundable & -- \\
+& Selected Meal Plan & BB, FB, HB, SC, Undefined & Meal Plan 1, 2, 3, Not Selected \\
+\midrule
+\textbf{Censoring Schemas} 
+& Survival Time ($T$) & Actual elapsed time (days) & Proxy ($Lead\ Time$, $Lead\ Time / 2$) \\
 & Event indicator ($\delta=1$) & Confirmed Cancellation & Canceled Status \\
 & Censored indicator ($\delta=0$) & Active / Check-in reached & Not Canceled \\
 \bottomrule
 \end{tabular}
+}
+\end{center}
 \end{table}
 
-For survival modeling purposes, Dataset 1 allows the extraction of the exact duration until cancellation by using the update timestamp (\texttt{reservation\_status\_date}), representing a highly accurate survival profile. In contrast, Dataset 2 represents a more challenging setting with interval censoring. Since the exact cancellation dates are unobserved in Dataset 2, we define the event duration as $T_i = \text{Lead\_Time}_i / 2$ for canceled bookings ($\delta_i = 1$), representing an expected uniform occurrence under interval uncertainty, and $T_i = \text{Lead\_Time}_i$ for active/censored reservations ($\delta_i = 0$).
 
 
 
