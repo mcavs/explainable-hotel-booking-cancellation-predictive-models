@@ -174,12 +174,40 @@ In the tourism economics domain, \cite{mir2026decoding} applied survival analysi
 \section{Methodology} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Before establishing the global explanation methods, we define the foundational notation of the time-to-event (survival) framework. Let $T \ge 0$ denote the continuous random variable representing the survival time (time until cancellation or check-in), and $C \ge 0$ denote the random censoring time. In a right-censored data environment, we observe the pair $(Y, \delta)$, where $Y = \min(T, C)$ represents the observed time, and $\delta = \mathbb{I}(T \le C)$ is the event indicator ($\delta = 1$ for a confirmed cancellation, and $\delta = 0$ for a censored observation where check-in is reached without cancellation). 
+
+For a given $p$-dimensional feature vector $X \in \mathbb{R}^p$, the conditional survival function $S(t \mid X)$, which models the probability of a reservation remaining active beyond time $t$, is defined as:
+\begin{equation}
+S(t \mid X) = P(T > t \mid X)
+\end{equation}
+Correspondingly, the conditional hazard rate $\lambda(t \mid X)$, expressing the instantaneous rate of cancellation at time $t$ given survival up to that point, is formulated as:
+\begin{equation}
+\lambda(t \mid X) = \lim_{\Delta t \to 0} \frac{P(t \le T < t + \Delta t \mid T \ge t, X)}{\Delta t} = -\frac{d}{dt} \ln S(t \mid X)
+\end{equation}
+By modeling $\hat{S}(t \mid X)$ directly using machine learning survival algorithms, we dynamically capture how cancellation risk changes over time.
+
+\subsection{Survival Partial Dependence Plots (SurvPDP)}
+To capture the global marginal effect of a specific feature on the predicted survival probability across a continuous time horizon, we employ Survival Partial Dependence Plots (SurvPDP) \citep{langbein2025interpretable}. Let $X$ represent the feature vector of size $p$, partitioned into a target feature of interest $X^S$ and the remaining features $X^C$ such that $X = (X^S, X^C)$. The survival function estimated by a machine learning survival model at time $t$ for a given feature configuration is denoted as $\hat{S}(t \mid X)$. The SurvPDP function for $X^S$ at time $t$ is defined by marginalizing over the joint distribution of $X^C$:
+\begin{equation}
+\text{SurvPDP}(t, x^S) = E_{X^C} \left[ \hat{S}(t \mid (x^S, X^C)) \right] \approx \frac{1}{N} \sum_{i=1}^N \hat{S}\left(t \mid (x^S, x_i^C)\right)
+\end{equation}
+where $N$ is the number of observations in the dataset, and $x_i^C$ represents the values of the confounding features for the $i$-th instance. By plotting $\text{SurvPDP}(t, x^S)$ across a range of values for $x^S$ and continuous time steps $t$, we can visualize how the marginal survival curves and instantaneous cancellation risks evolve dynamically over the reservation lifecycle.
+
+\subsection{Survival Permutation Feature Importance (SurvPFI)}
+To quantify the global impact of individual features on the survival model's overall predictive performance, we utilize Survival Permutation Feature Importance (SurvPFI) \citep{langbein2025interpretable}. SurvPFI measures the degradation in a model's predictive performance when the relationship between a target feature $X^j$ and the survival outcomes is broken via random shuffling. 
+
+Let $L(\hat{S}, D)$ represent a loss function (e.g., the integrated Brier score or 1 minus the Harrell's concordance index) computed for the model $\hat{S}$ on the dataset $D = \{(X_i, Y_i, \delta_i)\}_{i=1}^N$. Let $D^{\pi, j}$ denote the perturbed dataset where the values of feature $X^j$ have been randomly permuted across observations while keeping all other features and target variables $(Y, \delta)$ intact. The permutation feature importance for feature $X^j$ is formulated as:
+\begin{equation}
+\text{SurvPFI}(X^j) = L(\hat{S}, D^{\pi, j}) - L(\hat{S}, D)
+\end{equation}
+Alternatively, it can be defined as the ratio $L(\hat{S}, D^{\pi, j}) / L(\hat{S}, D)$. Higher values of $\text{SurvPFI}(X^j)$ indicate that the model relies heavily on feature $X^j$ to predict time-to-event outcomes accurately. In this study, we compute the loss metric based on time-dependent performance criteria to capture the temporal accuracy of booking cancellations.
+
 \subsection{Dataset Profiles and Feature Characterization}
 To evaluate the proposed explainable time-to-event frameworks, we leverage two empirical datasets commonly benchmarked in hospitality demand modeling. Both datasets contain granular, reservation-level transaction records but differ in feature design, sample size, and temporal resolution.
 
 The first dataset, the Hotel Booking Demand dataset (hereafter Dataset 1), was originally introduced by \cite{antonio2019data} and consists of $119,390$ reservations recorded from a Resort Hotel and a City Hotel in Portugal. It contains $32$ variables spanning reservation details, customer demographics, and transactional attributes. The second dataset, the Hotel Reservations dataset (hereafter Dataset 2), was published by \cite{raza2023hotel} and contains $36,275$ observations with $19$ features capturing customer reservation metrics and preferences.
 
-To ensure compatibility with the time-to-event modeling framework, the survival duration ($T$) and censoring indicator ($\delta$) are calculated based on the temporal granularity available. In Dataset 1, the exact survival duration is computed as the number of days elapsed between the booking creation date (arrival date minus lead time) and either the status update date (for confirmed cancellations, $\delta = 1$) or the scheduled check-in date (for active check-outs, $\delta = 0$). In Dataset 2, which does not provide status update timestamps, we estimate the survival duration under interval censoring. Specifically, we set $T_i = \text{Lead\_Time}_i / 2$ for canceled reservations ($\delta_i = 1$), which represents a uniform distribution of cancellation timing before check-in, and $T_i = \text{Lead\_Time}_i$ for non-canceled bookings ($\delta_i = 0$).
+To ensure compatibility with the time-to-event modeling framework, the survival duration ($T$) and censoring indicator ($\delta$) are calculated based on the temporal granularity available. In Dataset 1, the exact survival duration is computed as the number of days elapsed between the booking creation date (arrival date minus lead time) and either the status update date (for confirmed cancellations, $\delta = 1$) or the scheduled check-in date (for active check-outs, $\delta = 0$). In Dataset 2, which does not provide status update timestamps, we estimate the survival duration under interval censoring. Specifically, we set $Y_i = \text{Lead\_Time}_i / 2$ for canceled reservations ($\delta_i = 1$), which represents a uniform distribution of cancellation timing before check-in, and $Y_i = \text{Lead\_Time}_i$ for non-canceled bookings ($\delta_i = 0$).
 
 A detailed statistical characterization of all features across both datasets, including their distribution metrics and categories, is structured in Table~\ref{tab:dataset_comparison}.
 
@@ -218,21 +246,8 @@ Attribute / Dimension & Dataset 1 \citep{antonio2019data} & Dataset 2 \citep{raz
 \quad Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
 \bottomrule
 \end{tabular*}
-\end{table}\subsection{Survival Partial Dependence Plots (SurvPDP)}
-To capture the global marginal effect of a specific feature on the predicted survival probability across a continuous time horizon, we employ Survival Partial Dependence Plots (SurvPDP) \citep{langbein2025interpretable}. Let $X$ represent the feature vector of size $p$, partitioned into a target feature of interest $X^S$ and the remaining features $X^C$ such that $X = (X^S, X^C)$. The survival function estimated by a machine learning survival model at time $t$ for a given feature configuration is denoted as $\hat{S}(t, X)$. The SurvPDP function for $X^S$ at time $t$ is defined by marginalizing over the joint distribution of $X^C$:
-\begin{equation}
-\text{SurvPDP}(t, x^S) = E_{X^C} \left[ \hat{S}(t, (x^S, X^C)) \right] \approx \frac{1}{N} \sum_{i=1}^N \hat{S}\left(t, (x^S, x_i^C)\right)
-\end{equation}
-where $N$ is the number of observations in the dataset, and $x_i^C$ represents the values of the confounding features for the $i$-th instance. By plotting $\text{SurvPDP}(t, x^S)$ across a range of values for $x^S$ and continuous time steps $t$, we can visualize how the marginal survival curves and instantaneous cancellation risks evolve dynamically over the reservation lifecycle.
+\end{table}
 
-\subsection{Survival Permutation Feature Importance (SurvPFI)}
-To quantify the global impact of individual features on the survival model's overall predictive performance, we utilize Survival Permutation Feature Importance (SurvPFI) \citep{langbein2025interpretable}. SurvPFI measures the degradation in a model's predictive performance when the relationship between a target feature $X^j$ and the survival outcomes is broken via random shuffling. 
-
-Let $L(\hat{S}, D)$ represent a loss function (e.g., the integrated Brier score or 1 minus the Harrell's concordance index) computed for the model $\hat{S}$ on the dataset $D = \{(X_i, T_i, \delta_i)\}_{i=1}^N$. Let $D^{\pi, j}$ denote the perturbed dataset where the values of feature $X^j$ have been randomly permuted across observations while keeping all other features and target variables $(T, \delta)$ intact. The permutation feature importance for feature $X^j$ is formulated as:
-\begin{equation}
-\text{SurvPFI}(X^j) = L(\hat{S}, D^{\pi, j}) - L(\hat{S}, D)
-\end{equation}
-Alternatively, it can be defined as the ratio $L(\hat{S}, D^{\pi, j}) / L(\hat{S}, D)$. Higher values of $\text{SurvPFI}(X^j)$ indicate that the model relies heavily on feature $X^j$ to predict time-to-event outcomes accurately. In this study, we compute the loss metric based on time-dependent performance criteria to capture the temporal accuracy of booking cancellations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
