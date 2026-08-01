@@ -213,7 +213,7 @@ A detailed statistical characterization of all features across both datasets, in
 
 \begin{table}[htbp]
 \caption{Statistical profile and comparison of the datasets}\label{tab:dataset_comparison}
-\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} lcc}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l p{0.34\textwidth} p{0.34\textwidth}}
 \toprule
 & Dataset 1 \citep{antonio2019data} & Dataset 2 \citep{raza2023hotel} \\
 \midrule
@@ -228,13 +228,13 @@ Weekend Nights & $[0, 19]$ & $[0, 7]$ \\
 Week Nights & $[0, 50]$ & $[0, 17]$ \\
 \midrule
 \textit{Categorical \& Ordinal Features} & & \\
-Adults & $[0, 55]$ & $[0, 4]$ \\
-Children & $[0, 10]$ & $[0, 10]$ \\
-Prior Cancellations & $[0, 26]$ & $[0, 13]$ \\
-Special Requests & $[0, 5]$ & $[0, 5]$ \\
-Booking Changes & $[0, 21]$ & -- \\
+Number of Adults & $[0, 55]$ & $[0, 4]$ \\
+Number of Children & $[0, 10]$ & $[0, 10]$ \\
+Number of Prior Cancellations & $[0, 26]$ & $[0, 13]$ \\
+Number of Special Requests & $[0, 5]$ & $[0, 5]$ \\
+Number of Booking Modifications & $[0, 21]$ & -- \\
 Booking Channel & $\{\text{Online}, \text{Offline}, \text{Corporate}, \text{Direct}, \text{Aviation}\}$ & $\{\text{Online}, \text{Offline}, \text{Corporate}, \text{Aviation}\}$ \\
-Deposit Requirement & $\{\text{No Deposit}, \text{Non-Refund}, \text{Refundable}\}$ & $\emptyset$ \\
+Deposit Requirement & $\{\text{No Deposit}, \text{Non-Refund}, \text{Refundable}\}$ & -- \\
 Selected Meal Plan & $\{\text{BB}, \text{FB}, \text{HB}, \text{SC}, \text{Undefined}\}$ & $\{\text{Meal 1}, \text{Meal 2}, \text{Meal 3}, \text{Undefined}\}$ \\
 \midrule
 \textit{Survival Schema} & & \\
