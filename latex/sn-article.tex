@@ -258,69 +258,41 @@ Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
 
 In this section, we present the predictive performance evaluation of the 16 survival analysis models across both Dataset 1 and Dataset 2. The performance is assessed using three standard survival evaluation metrics: the Concordance Index ($C$-index), the Integrated Brier Score (IBS), and the Right-Censored Log-Likelihood (RCLL), computed on both the training and test partitions.
 
-Table~\ref{tab:performance_ds1} details the performance metrics of the models trained on the Hotel Booking Demand dataset (Dataset 1).
+Table~\ref{tab:performance_comparison} details the comparative performance metrics of the models trained on both the Hotel Booking Demand dataset (Dataset 1) and the Hotel Reservations dataset (Dataset 2).
 
 \begin{table}[htbp]
-\caption{Predictive performance metrics on Dataset 1 (Hotel Booking Demand)}\label{tab:performance_ds1}
-\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} lcccc}
+\caption{Comparative predictive performance metrics across Dataset 1 and Dataset 2}\label{tab:performance_comparison}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} lcccccccc}
 \toprule
-Model & Train $C$-index & Train IBS & Test $C$-index & Test IBS \\
+& \multicolumn{4}{c}{Dataset 1 (Hotel Booking Demand)} & \multicolumn{4}{c}{Dataset 2 (Hotel Reservations)} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9}
+Model & Train $C$-idx & Train IBS & Test $C$-idx & Test IBS & Train $C$-idx & Train IBS & Test $C$-idx & Test IBS \\
 \midrule
-\textit{Tuned/Regularized Models} & & & & \\
-\quad Elastic Net Cox (Grid) & 0.7486 & 0.1228 & 0.7495 & 0.0952 \\
-\quad Elastic Net Cox (Random) & 0.7537 & 0.1199 & 0.7548 & 0.0929 \\
-\quad RSF (Ranger, Tuned Grid) & 0.9008 & 0.0881 & 0.8039 & 0.1429 \\
-\quad RSF (Ranger, Tuned Random) & 0.8964 & 0.0866 & 0.8048 & 0.1378 \\
+\textit{Tuned/Regularized} & & & & & & & & \\
+\quad Elastic Net Cox (Grid) & 0.7486 & 0.1228 & 0.7495 & 0.0952 & 0.8023 & 0.1201 & 0.8037 & 0.1175 \\
+\quad Elastic Net Cox (Random) & 0.7537 & 0.1199 & 0.7548 & 0.0929 & 0.8004 & 0.1206 & 0.8020 & 0.1186 \\
+\quad RSF (Ranger, Tuned Grid) & 0.9008 & 0.0881 & 0.8039 & 0.1429 & 0.9287 & 0.0839 & 0.8309 & 0.1212 \\
+\quad RSF (Ranger, Tuned Random) & 0.8964 & 0.0866 & 0.8048 & 0.1378 & 0.9169 & 0.0793 & 0.8278 & 0.1141 \\
 \midrule
-\textit{Vanilla/Baseline Models} & & & & \\
-\quad Oblique RSF (\textit{aorsf}) & 0.8508 & 0.0580 & 0.7855 & 0.0844 \\
-\quad Gradient Boosted Cox (\textit{blackboost}) & 0.7662 & 0.1209 & 0.7654 & 0.0957 \\
-\quad Conditional Forest (\textit{cforest}) & 0.8212 & 0.0600 & -- & -- \\
-\quad Classical Cox PH & 0.7766 & 0.1071 & 0.7776 & 0.0842 \\
-\quad Conditional Inference Tree (\textit{ctree}) & 0.6620 & 0.1053 & -- & -- \\
-\quad Cross-Validated Elastic Net & 0.7540 & 0.1160 & 0.7550 & 0.0898 \\
-\quad Component-wise Gradient Boosting (\textit{glmboost}) & 0.7209 & 0.1336 & 0.7214 & 0.1045 \\
-\quad Kaplan-Meier Baseline & 0.5000 & 0.1865 & 0.5000 & 0.1487 \\
-\quad Random Survival Forest (\textit{ranger}) & 0.8917 & 0.0854 & 0.8049 & 0.1331 \\
-\quad Random Survival Forest (\textit{rfsrc}) & 0.8444 & 0.0886 & 0.7935 & 0.1090 \\
-\quad Relative Risk Survival Tree (\textit{rpart}) & 0.7323 & -- & 0.7329 & -- \\
+\textit{Vanilla/Baseline} & & & & & & & & \\
+\quad Oblique RSF (\textit{aorsf}) & 0.8508 & 0.0580 & 0.7855 & 0.0844 & 0.8618 & 0.0526 & 0.8116 & 0.0753 \\
+\quad Gradient Boosted Cox (\textit{blackboost}) & 0.7662 & 0.1209 & 0.7654 & 0.0957 & 0.8129 & 0.1154 & 0.8087 & 0.1170 \\
+\quad Conditional Forest (\textit{cforest}) & 0.8212 & 0.0600 & -- & -- & 0.8325 & 0.0504 & 0.8075 & 0.0591 \\
+\quad Classical Cox PH & 0.7766 & 0.1071 & 0.7776 & 0.0842 & 0.8054 & 0.1216 & 0.8073 & 0.1164 \\
+\quad Conditional Inference Tree (\textit{ctree}) & 0.6620 & 0.1053 & -- & -- & 0.7170 & 0.0914 & 0.7090 & 0.0953 \\
+\quad Cross-Validated Elastic Net & 0.7540 & 0.1160 & 0.7550 & 0.0898 & 0.7967 & 0.1235 & 0.7971 & 0.1214 \\
+\quad Component Gradient Boosting (\textit{glmboost}) & 0.7209 & 0.1336 & 0.7214 & 0.1045 & 0.7919 & 0.1345 & 0.7924 & 0.1357 \\
+\quad Kaplan-Meier Baseline & 0.5000 & 0.1865 & 0.5000 & 0.1487 & 0.5000 & 0.1796 & 0.5000 & 0.1864 \\
+\quad Random Survival Forest (\textit{ranger}) & 0.8917 & 0.0854 & 0.8049 & 0.1331 & 0.9026 & 0.0764 & 0.8229 & 0.1071 \\
+\quad Random Survival Forest (\textit{rfsrc}) & 0.8444 & 0.0886 & 0.7935 & 0.1090 & 0.8441 & 0.0834 & 0.7975 & 0.0989 \\
+\quad Relative Risk Survival Tree (\textit{rpart}) & 0.7323 & -- & 0.7329 & -- & 0.7618 & -- & 0.7582 & -- \\
 \bottomrule
 \end{tabular*}
 \end{table}
 
-The experimental results indicate that ensemble architectures consistently outperform classical parametric and semi-parametric techniques in terms of discriminative power ($C$-index). For Dataset 1, the tuned Random Survival Forest models achieved the highest test concordance ($C$-index $\approx 0.8048$), followed closely by the vanilla Random Forest implementations. However, these ensemble models exhibit slight overfitting, as evidenced by the performance gap between the training ($C$-index $\approx 0.90$) and testing sets. In contrast, the Oblique Random Survival Forest (\textit{aorsf}) offered a highly competitive test $C$-index of $0.7855$ while yielding the overall lowest test Integrated Brier Score (IBS = $0.0844$), suggesting superior probability calibration.
+The experimental results across both datasets indicate that machine learning ensemble architectures, particularly Random Survival Forests (RSF), consistently outperform classical parametric and semi-parametric baseline models. For Dataset 1, the tuned RSF model (Ranger, Tuned Random) achieved the highest test concordance ($C$-index = $0.8048$). Similarly, for Dataset 2, the tuned RSF model (Ranger, Tuned Grid) reached the peak test concordance ($C$-index = $0.8309$), confirming its capacity to capture non-linear, time-dependent patterns. 
 
-Table~\ref{tab:performance_ds2} summarizes the performance metrics on the Hotel Reservations dataset (Dataset 2).
-
-\begin{table}[htbp]
-\caption{Predictive performance metrics on Dataset 2 (Hotel Reservations)}\label{tab:performance_ds2}
-\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} lcccc}
-\toprule
-Model & Train $C$-index & Train IBS & Test $C$-index & Test IBS \\
-\midrule
-\textit{Tuned/Regularized Models} & & & & \\
-\quad Elastic Net Cox (Grid) & 0.8023 & 0.1201 & 0.8037 & 0.1175 \\
-\quad Elastic Net Cox (Random) & 0.8004 & 0.1206 & 0.8020 & 0.1186 \\
-\quad RSF (Ranger, Tuned Grid) & 0.9287 & 0.0839 & 0.8309 & 0.1212 \\
-\quad RSF (Ranger, Tuned Random) & 0.9169 & 0.0793 & 0.8278 & 0.1141 \\
-\midrule
-\textit{Vanilla/Baseline Models} & & & & \\
-\quad Oblique RSF (\textit{aorsf}) & 0.8618 & 0.0526 & 0.8116 & 0.0753 \\
-\quad Gradient Boosted Cox (\textit{blackboost}) & 0.8129 & 0.1154 & 0.8087 & 0.1170 \\
-\quad Conditional Forest (\textit{cforest}) & 0.8325 & 0.0504 & 0.8075 & 0.0591 \\
-\quad Classical Cox PH & 0.8054 & 0.1216 & 0.8073 & 0.1164 \\
-\quad Conditional Inference Tree (\textit{ctree}) & 0.7170 & 0.0914 & 0.7090 & 0.0953 \\
-\quad Cross-Validated Elastic Net & 0.7967 & 0.1235 & 0.7971 & 0.1214 \\
-\quad Component-wise Gradient Boosting (\textit{glmboost}) & 0.7919 & 0.1345 & 0.7924 & 0.1357 \\
-\quad Kaplan-Meier Baseline & 0.5000 & 0.1796 & 0.5000 & 0.1864 \\
-\quad Random Survival Forest (\textit{ranger}) & 0.9026 & 0.0764 & 0.8229 & 0.1071 \\
-\quad Random Survival Forest (\textit{rfsrc}) & 0.8441 & 0.0834 & 0.7975 & 0.0989 \\
-\quad Relative Risk Survival Tree (\textit{rpart}) & 0.7618 & -- & 0.7582 & -- \\
-\bottomrule
-\end{tabular*}
-\end{table}
-
-A similar trend is observed in Dataset 2, where the tuned Random Survival Forest (Ranger, Tuned Grid) achieved the highest test concordance ($C$-index = $0.8309$), confirming its capacity to model non-linear time-to-event relationships in reservation data. Classical Cox Proportional Hazards and regularized Elastic Net models showed stable but lower performance, with test $C$-index scores hovering around $0.80$. The Oblique RSF model (\textit{aorsf}) again stood out by balancing a high concordance ($0.8116$) with excellent calibration, achieving the lowest test Integrated Brier Score ($0.0753$). These findings emphasize the utility of machine learning ensemble frameworks over traditional survival estimators for dynamic cancellation monitoring.
+However, these complex ensemble models display a noticeable margin of overfitting, as indicated by the discrepancy between their training and testing performance metrics. In contrast, the Oblique Random Survival Forest (\textit{aorsf}) presents a balanced alternative: it provides highly competitive test concordance scores ($0.7855$ on Dataset 1, and $0.8116$ on Dataset 2) while achieving the lowest overall test Integrated Brier Scores (IBS = $0.0844$ and $0.0753$, respectively). This indicates superior probability calibration, rendering Oblique RSF models particularly effective for operational risk-score mapping in revenue management systems. Traditional survival benchmarks, such as the classical Cox PH and Kaplan-Meier models, remain stable but yield significantly lower discriminative utility.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
