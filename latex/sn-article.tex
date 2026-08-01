@@ -212,35 +212,34 @@ To ensure compatibility with the time-to-event modeling framework, the survival 
 A detailed statistical characterization of all features across both datasets, including their distribution metrics and categories, is structured in Table~\ref{tab:dataset_comparison}.
 
 \begin{table}[htbp]
-\caption{Statistical profile and comparison of the empirical booking datasets}\label{tab:dataset_comparison}
+\caption{Statistical profile and comparison of the datasets}\label{tab:dataset_comparison}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} lcc}
 \toprule
-Metric / Feature & Dataset 1 \citep{antonio2019data} & Dataset 2 \citep{raza2023hotel} \\
+& Dataset 1 \citep{antonio2019data} & Dataset 2 \citep{raza2023hotel} \\
 \midrule
-\textit{Dataset Dimensions} & & \\
 Observations ($N$) & 119,390 & 36,275 \\
 Total Predictors ($p$) & 29 & 17 \\
 Target Event Rate (Canceled) & 37.04\% & 32.76\% \\
 \midrule
-\textit{Continuous Features [Range (Mean)]} & & \\
+\textit{Continuous Features} & & \\\midrule
 Lead Time (days) & 0--737 (104.01) & 0--443 (85.23) \\
 Average Daily Rate (ADR) / Price & -6.38--5400.00 (101.83) & 0.00--540.00 (103.42) \\
 Weekend Nights & 0--19 (0.93) & 0--7 (0.81) \\
 Week Nights & 0--50 (2.50) & 0--17 (2.20) \\
 \midrule
-\textit{Discrete/Ordinal Features [Range (Mean)]} & & \\
+\textit{Discrete/Ordinal Features} & & \\\midrule
 Adults & 0--55 (1.86) & 0--4 (1.84) \\
 Children & 0--10 (0.10) & 0--10 (0.11) \\
 Prior Cancellations & 0--26 (0.08) & 0--13 (0.02) \\
 Special Requests & 0--5 (0.56) & 0--5 (0.62) \\
 Booking Changes & 0--21 (0.22) & -- \\
 \midrule
-\textit{Categorical Features (Number of Levels)} & & \\
+\textit{Categorical Features} & & \\\midrule
 Booking Channel & 5 levels & 4 levels \\
 Deposit Requirement & 3 levels & -- \\
 Selected Meal Plan & 5 levels & 4 levels \\
 \midrule
-\textit{Censoring \& Survival Schema} & & \\
+\textit{Survival Schema} & & \\\midrule
 Survival Time ($T$ / $Y$) & Actual elapsed days & Proxy (Lead Time) \\
 Event indicator ($\delta=1$) & Confirmed Cancellation & Canceled Status \\
 Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
