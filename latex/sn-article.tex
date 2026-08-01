@@ -212,38 +212,38 @@ To ensure compatibility with the time-to-event modeling framework, the survival 
 A detailed statistical characterization of all features across both datasets, including their distribution metrics and categories, is structured in Table~\ref{tab:dataset_comparison}.
 
 \begin{table}[htbp]
-\caption{Detailed profile of empirical booking datasets with feature ranges}\label{tab:dataset_comparison}
-\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l p{0.32\textwidth} p{0.32\textwidth}}
+\caption{Statistical profile and comparison of the empirical booking datasets}\label{tab:dataset_comparison}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} lcc}
 \toprule
-Attribute / Dimension & Dataset 1 \citep{antonio2019data} & Dataset 2 \citep{raza2023hotel} \\
+Metric / Feature & Dataset 1 \citep{antonio2019data} & Dataset 2 \citep{raza2023hotel} \\
 \midrule
-\textbf{Data Dimensions} & & \\
-\quad Observations ($N$) & 119,390 & 36,275 \\
-\quad Total Predictors ($p$) & 29 & 17 \\
-\quad Target Event Rate (Canceled) & 37.04\% & 32.76\% \\
+\textit{Dataset Dimensions} & & \\
+Observations ($N$) & 119,390 & 36,275 \\
+Total Predictors ($p$) & 29 & 17 \\
+Target Event Rate (Canceled) & 37.04\% & 32.76\% \\
 \midrule
-\textbf{Continuous Metrics} & & \\
-\quad Lead Time (days) & $[0,\, 737]$ ($\mu=104.01$) & $[0,\, 443]$ ($\mu=85.23$) \\
-\quad Room Price (USD) & ADR: $[-6.38,\, 5400.00]$ ($\mu=101.83$) & Avg.\ Price: $[0.00,\, 540.00]$ ($\mu=103.42$) \\
-\quad Weekend Nights & $[0,\, 19]$ ($\mu=0.93$) & $[0,\, 7]$ ($\mu=0.81$) \\
-\quad Week Nights & $[0,\, 50]$ ($\mu=2.50$) & $[0,\, 17]$ ($\mu=2.20$) \\
+\textit{Continuous Features [Range (Mean)]} & & \\
+Lead Time (days) & 0--737 (104.01) & 0--443 (85.23) \\
+Average Daily Rate (ADR) / Price & -6.38--5400.00 (101.83) & 0.00--540.00 (103.42) \\
+Weekend Nights & 0--19 (0.93) & 0--7 (0.81) \\
+Week Nights & 0--50 (2.50) & 0--17 (2.20) \\
 \midrule
-\textbf{Discrete / Ordinal} & & \\
-\quad Adults & $[0,\, 55]$ ($\mu=1.86$) & $[0,\, 4]$ ($\mu=1.84$) \\
-\quad Children & $[0,\, 10]$ ($\mu=0.10$) & $[0,\, 10]$ ($\mu=0.11$) \\
-\quad Prior Cancellations & $[0,\, 26]$ ($\mu=0.08$) & $[0,\, 13]$ ($\mu=0.02$) \\
-\quad Special Requests & $[0,\, 5]$ ($\mu=0.56$) & $[0,\, 5]$ ($\mu=0.62$) \\
-\quad Booking Changes & $[0,\, 21]$ ($\mu=0.22$) & -- \\
+\textit{Discrete/Ordinal Features [Range (Mean)]} & & \\
+Adults & 0--55 (1.86) & 0--4 (1.84) \\
+Children & 0--10 (0.10) & 0--10 (0.11) \\
+Prior Cancellations & 0--26 (0.08) & 0--13 (0.02) \\
+Special Requests & 0--5 (0.56) & 0--5 (0.62) \\
+Booking Changes & 0--21 (0.22) & -- \\
 \midrule
-\textbf{Categorical Context} & & \\
-\quad Booking Channel & Online TA, Offline TA, Corporate, Direct, Aviation & Online, Offline, Corporate, Aviation \\
-\quad Deposit Requirement & No Deposit, Non-Refund, Refundable & -- \\
-\quad Selected Meal Plan & BB, FB, HB, SC, Undefined & Meal Plan 1, 2, 3, Undefined \\
+\textit{Categorical Features (Number of Levels)} & & \\
+Booking Channel & 5 levels & 4 levels \\
+Deposit Requirement & 3 levels & -- \\
+Selected Meal Plan & 5 levels & 4 levels \\
 \midrule
-\textbf{Censoring Schemas} & & \\
-\quad Survival Time ($T$) & Actual elapsed days & Proxy ($Lead\ Time$, $Lead\ Time/2$) \\
-\quad Event indicator ($\delta=1$) & Confirmed Cancellation & Canceled Status \\
-\quad Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
+\textit{Censoring \& Survival Schema} & & \\
+Survival Time ($T$ / $Y$) & Actual elapsed days & Proxy (Lead Time) \\
+Event indicator ($\delta=1$) & Confirmed Cancellation & Canceled Status \\
+Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
 \bottomrule
 \end{tabular*}
 \end{table}
