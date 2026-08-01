@@ -221,25 +221,23 @@ Observations ($N$) & 119,390 & 36,275 \\
 Total Predictors ($p$) & 29 & 17 \\
 Target Event Rate (Canceled) & 37.04\% & 32.76\% \\
 \midrule
-\textit{Continuous Features} & & \\\midrule
-Lead Time (days) & 0--737 (104.01) & 0--443 (85.23) \\
-Average Daily Rate (ADR) / Price & -6.38--5400.00 (101.83) & 0.00--540.00 (103.42) \\
-Weekend Nights & 0--19 (0.93) & 0--7 (0.81) \\
-Week Nights & 0--50 (2.50) & 0--17 (2.20) \\
+\textit{Continuous Features} & & \\
+Lead Time (days) & $[0, 737]$ & $[0, 443]$ \\
+Average Daily Rate (ADR) / Price & $[-6.38, 5400.00]$ & $[0.00, 540.00]$ \\
+Weekend Nights & $[0, 19]$ & $[0, 7]$ \\
+Week Nights & $[0, 50]$ & $[0, 17]$ \\
 \midrule
-\textit{Discrete/Ordinal Features} & & \\\midrule
-Adults & 0--55 (1.86) & 0--4 (1.84) \\
-Children & 0--10 (0.10) & 0--10 (0.11) \\
-Prior Cancellations & 0--26 (0.08) & 0--13 (0.02) \\
-Special Requests & 0--5 (0.56) & 0--5 (0.62) \\
-Booking Changes & 0--21 (0.22) & -- \\
+\textit{Categorical \& Ordinal Features} & & \\
+Adults & $[0, 55]$ & $[0, 4]$ \\
+Children & $[0, 10]$ & $[0, 10]$ \\
+Prior Cancellations & $[0, 26]$ & $[0, 13]$ \\
+Special Requests & $[0, 5]$ & $[0, 5]$ \\
+Booking Changes & $[0, 21]$ & -- \\
+Booking Channel & $\{\text{Online}, \text{Offline}, \text{Corporate}, \text{Direct}, \text{Aviation}\}$ & $\{\text{Online}, \text{Offline}, \text{Corporate}, \text{Aviation}\}$ \\
+Deposit Requirement & $\{\text{No Deposit}, \text{Non-Refund}, \text{Refundable}\}$ & $\emptyset$ \\
+Selected Meal Plan & $\{\text{BB}, \text{FB}, \text{HB}, \text{SC}, \text{Undefined}\}$ & $\{\text{Meal 1}, \text{Meal 2}, \text{Meal 3}, \text{Undefined}\}$ \\
 \midrule
-\textit{Categorical Features} & & \\\midrule
-Booking Channel & 5 levels & 4 levels \\
-Deposit Requirement & 3 levels & -- \\
-Selected Meal Plan & 5 levels & 4 levels \\
-\midrule
-\textit{Survival Schema} & & \\\midrule
+\textit{Survival Schema} & & \\
 Survival Time ($T$ / $Y$) & Actual elapsed days & Proxy (Lead Time) \\
 Event indicator ($\delta=1$) & Confirmed Cancellation & Canceled Status \\
 Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
