@@ -256,16 +256,15 @@ Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
 \section{Results} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+<<<<<<< HEAD
 In this section, we present a comparative predictive performance evaluation of the 16 survival analysis models on the test partitions of both Dataset 1 and Dataset 2. To capture the multi-dimensional capacity of time-to-event models, we evaluate performance across three distinct criteria:
 \begin{enumerate}
 \item \textbf{Discriminative Power}: Evaluated using the Concordance Index ($C$-index), which measures the model's ability to correctly order individual cancellation event times (i.e., whether a customer predicted to cancel earlier does indeed cancel first).
-\item \textbf{Probability Calibration and Accuracy}: Assessed using the Integrated Brier Score (IBS) and the Integrated Schmid Score (ISS). IBS represents the mean squared error between the estimated survival probability and the status over time. The Schmid Score is an alternative IPCW (Inverse Probability of Censoring Weighting) score that evaluates probability discrepancies under non-uniform censoring regimes.
-\item \textbf{Distributional Fit and Likelihood}: Measured via the Right-Censored Log-Likelihood (RCLL), capturing the information gain and likelihood of the observed survival times under the predicted distribution.
-\end{enumerate}
-
-Table~\ref{tab:performance_comparison} details the comparative test performance metrics of the models.
+In this section, we present the predictive performance evaluation of the 16 survival analysis models across both Dataset 1 and Dataset 2. The performance is assessed using two standard survival evaluation metrics: the Concordance Index ($C$-index) and the Integrated Brier Score (IBS), computed on both the training and test partitions. Table~\ref{tab:performance_comparison} details the comparative test performance metrics of the models.
 
 \begin{table}[htbp]
+\centering
+\small
 \caption{Predictive performance metrics on test partitions of Dataset 1 and Dataset 2}\label{tab:performance_comparison}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} lcccccccc}
 \toprule
@@ -276,19 +275,19 @@ Model & $C$-idx $\uparrow$ & IBS $\downarrow$ & Schmid $\downarrow$ & RCLL $\dow
 \textit{Tuned/Regularized} & & & & & & & & \\
 \quad EN-Cox (Grid) & 0.7495 & 0.0952 & 0.2035 & 2.0882 & 0.8037 & 0.1175 & 0.2594 & 1.8481 \\
 \quad EN-Cox (Random) & 0.7548 & 0.0929 & 0.1977 & 2.0787 & 0.8020 & 0.1186 & 0.2639 & 1.8542 \\
-\quad Tuned RSF (Grid) & 0.8039 & 0.1429 & 0.3184 & 1.7580 & 0.8309 & 0.1212 & -- & -- \\
-\quad Tuned RSF (Random) & 0.8048 & 0.1378 & 0.3121 & 1.7645 & 0.8278 & 0.1141 & 0.2623 & 0.7405 \\
+\quad Tuned RSF (Grid) & 0.8039 & 0.1429 & 0.3184 & 1.7580 & \textbf{0.8309} & 0.1212 & -- & -- \\
+\quad Tuned RSF (Random) & 0.8048 & 0.1378 & 0.3121 & 1.7645 & 0.8278 & 0.1141 & 0.2623 & \textbf{0.7405} \\
 \midrule
 \textit{Vanilla/Baseline} & & & & & & & & \\
-\quad Oblique RSF & 0.7855 & 0.0843 & 0.1999 & 1.5821 & 0.8108 & 0.0750 & 0.1937 & 0.9908 \\
+\quad Oblique RSF & 0.7855 & 0.0843 & 0.1999 & \textbf{1.5821} & 0.8108 & 0.0750 & 0.1937 & 0.9908 \\
 \quad GB-Cox & 0.7654 & 0.0957 & 0.2033 & 2.0601 & 0.8087 & 0.1170 & 0.2631 & 1.8390 \\
-\quad Cond. Forest & -- & -- & -- & -- & 0.8075 & 0.0591 & 0.1571 & 1.1031 \\
-\quad Cox PH & 0.7776 & 0.0842 & 0.1636 & 2.0268 & 0.8073 & 0.1164 & 0.2430 & 1.8306 \\
+\quad Cond. Forest & -- & -- & -- & -- & 0.8075 & \textbf{0.0591} & \textbf{0.1571} & 1.1031 \\
+\quad Cox PH & 0.7776 & \textbf{0.0842} & \textbf{0.1636} & 2.0268 & 0.8073 & 0.1164 & 0.2430 & 1.8306 \\
 \quad CIT & -- & -- & -- & -- & 0.7090 & 0.0953 & 0.1649 & 2.0444 \\
 \quad CV Elastic Net & 0.7550 & 0.0898 & 0.1906 & 2.0723 & 0.7971 & 0.1214 & 0.2673 & 1.8607 \\
 \quad Comp. GB-Cox & 0.7214 & 0.1045 & 0.2254 & 2.1143 & 0.7924 & 0.1357 & 0.2962 & 1.8932 \\
 \quad Kaplan-Meier & 0.5000 & 0.1487 & 0.1865 & 2.2295 & 0.5000 & 0.1864 & 0.1796 & 1.9788 \\
-\quad RSF (Ranger) & 0.8049 & 0.1331 & 0.3058 & 1.7387 & 0.8229 & 0.1071 & 0.2576 & 0.8369 \\
+\quad RSF (Ranger) & \textbf{0.8049} & 0.1331 & 0.3058 & 1.7387 & 0.8229 & 0.1071 & 0.2576 & 0.8369 \\
 \quad RSF (rfsrc) & 0.7935 & 0.1090 & 0.2304 & 1.7083 & 0.7975 & 0.0989 & -- & 0.8965 \\
 \quad Survival Tree & 0.7329 & -- & -- & -- & 0.7582 & -- & -- & -- \\
 \bottomrule
@@ -296,7 +295,7 @@ Model & $C$-idx $\uparrow$ & IBS $\downarrow$ & Schmid $\downarrow$ & RCLL $\dow
 \footnotetext{Abbreviations: EN-Cox: Elastic Net Cox; RSF: Random Survival Forest; GB-Cox: Gradient Boosted Cox; CIT: Conditional Inference Tree; Cox PH: Classical Cox PH; $C$-idx: Concordance Index; IBS: Integrated Brier Score; Schmid: Integrated Schmid Score; RCLL: Right-Censored Log-Likelihood.}
 \end{table}
 
-The empirical evaluation reveals a clear trade-off between model discriminative power and probability calibration. In terms of event ordering (discrimination), machine learning ensemble methods—specifically Tuned RSF and Vanilla RSF (Ranger)—consistently outscore parametric and semi-parametric baselines, yielding the highest Concordance Indices ($C$-idx $\approx 0.8048$ on Dataset 1 and $0.8309$ on Dataset 2). This indicates that the tree-based split criteria successfully capture the complex, non-linear variables driving booking cancellations.
+The empirical evaluation reveals a clear trade-off between model discriminative power and probability calibration. In terms of event ordering (discrimination), machine learning ensemble methods—specifically Tuned RSF and Vanilla RSF (Ranger)—consistently outscore parametric and semi-parametric baselines, yielding the highest Concordance Indices ($C$-idx $\approx 0.8049$ on Dataset 1 and $0.8309$ on Dataset 2). This indicates that the tree-based split criteria successfully capture the complex, non-linear variables driving booking cancellations.
 
 However, these high-concordance RSF models exhibit poorer calibration, as shown by elevated IBS ($0.1378$) and Schmid scores ($0.3121$) on Dataset 1, pointing to probability prediction errors. In contrast, the Oblique RSF model (\textit{aorsf}) provides a highly balanced alternative: it maintains competitive C-index scores ($0.7855$ and $0.8108$) while yielding the lowest probability calibration error (IBS = $0.0843$ and $0.0750$; Schmid = $0.1999$ and $0.1937$). Oblique RSF also minimizes the RCLL ($1.5821$ and $0.9908$), proving that linear combinations of features at node splits yield more reliable hazard likelihoods. This calibrated output is particularly valuable for revenue managers who require precise risk probabilities rather than mere orderings to configure dynamic cancellation fees. Traditional baselines (Kaplan-Meier, CIT) lack sufficient predictive utility across both metrics.
 
