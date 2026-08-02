@@ -55,6 +55,7 @@
 \usepackage{algorithmicx}%
 \usepackage{algpseudocode}%
 \usepackage{listings}%
+\usepackage{rotating}%
 
 %%%%
 
@@ -256,13 +257,16 @@ Censored indicator ($\delta=0$) & Check-in reached & Not Canceled \\
 \section{Results} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<<<<<<< HEAD
 In this section, we present a comparative predictive performance evaluation of the 16 survival analysis models on the test partitions of both Dataset 1 and Dataset 2. To capture the multi-dimensional capacity of time-to-event models, we evaluate performance across three distinct criteria:
 \begin{enumerate}
 \item \textbf{Discriminative Power}: Evaluated using the Concordance Index ($C$-index), which measures the model's ability to correctly order individual cancellation event times (i.e., whether a customer predicted to cancel earlier does indeed cancel first).
-In this section, we present the predictive performance evaluation of the 16 survival analysis models across both Dataset 1 and Dataset 2. The performance is assessed using two standard survival evaluation metrics: the Concordance Index ($C$-index) and the Integrated Brier Score (IBS), computed on both the training and test partitions. Table~\ref{tab:performance_comparison} details the comparative test performance metrics of the models.
+\item \textbf{Probability Calibration and Accuracy}: Assessed using the Integrated Brier Score (IBS) and the Integrated Schmid Score (ISS). IBS represents the mean squared error between the estimated survival probability and the status over time. The Schmid Score is an alternative IPCW (Inverse Probability of Censoring Weighting) score that evaluates probability discrepancies under non-uniform censoring regimes.
+\item \textbf{Distributional Fit and Likelihood}: Measured via the Right-Censored Log-Likelihood (RCLL), capturing the information gain and likelihood of the observed survival times under the predicted distribution.
+\end{enumerate}
 
-\begin{table}[htbp]
+Table~\ref{tab:performance_comparison} details the comparative test performance metrics of the models.
+
+\begin{sidewaystable}[htbp]
 \centering
 \small
 \caption{Predictive performance metrics on test partitions of Dataset 1 and Dataset 2}\label{tab:performance_comparison}
@@ -293,7 +297,7 @@ Model & $C$-idx $\uparrow$ & IBS $\downarrow$ & Schmid $\downarrow$ & RCLL $\dow
 \bottomrule
 \end{tabular*}
 \footnotetext{Abbreviations: EN-Cox: Elastic Net Cox; RSF: Random Survival Forest; GB-Cox: Gradient Boosted Cox; CIT: Conditional Inference Tree; Cox PH: Classical Cox PH; $C$-idx: Concordance Index; IBS: Integrated Brier Score; Schmid: Integrated Schmid Score; RCLL: Right-Censored Log-Likelihood.}
-\end{table}
+\end{sidewaystable}
 
 The empirical evaluation reveals a clear trade-off between model discriminative power and probability calibration. In terms of event ordering (discrimination), machine learning ensemble methods—specifically Tuned RSF and Vanilla RSF (Ranger)—consistently outscore parametric and semi-parametric baselines, yielding the highest Concordance Indices ($C$-idx $\approx 0.8049$ on Dataset 1 and $0.8309$ on Dataset 2). This indicates that the tree-based split criteria successfully capture the complex, non-linear variables driving booking cancellations.
 
