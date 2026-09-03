@@ -1,0 +1,39 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# LaTeX build artifacts
+latex/*.aux
+latex/*.log
+latex/*.out
+latex/*.toc
+latex/*.synctex.gz
+latex/*.fdb_latexmk
+latex/*.fls
+*.aux
+*.log
+*.out
+
+# Python / Local helper scripts
+*.py
+scratch/
+test_*
+
+# Logs and temporary files
+*.txt
+*.docx
+
+# Heavy data, models and explainers (to avoid GitHub 100MB limit)
+datasets/
+models/
+explainers/
+papers/
+
+# Scripts for scratch edits
+fix*.R
+update*.R
+add*.R
+insert*.R
+remove*.R
+restore*.R
+restructure*.R
