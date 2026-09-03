@@ -158,9 +158,7 @@ If you use this codebase or methodology in your research, please cite:
 
 ```bibtex
 @article{cavus2026explainable,
-  title   = {Explainable Time-to-Event Predictive Models for Hotel Booking Cancellations: A Continuous Multi-Cohort Analysis},
-  author  = {Cavus, Mustafa},
-  journal = {Electronic Markets},
-  year    = {2026}
+  title = {Explainable Time-to-Event Predictive Models for Hotel Booking Cancellations: A Continuous Multi-Cohort Analysis},
+  year  = {2026}
 }
 ```
