@@ -18,8 +18,7 @@ Traditional cancellation prediction frameworks in hospitality treat the problem 
 2. **Right-censoring bias:** Active bookings with future check-in dates are systematically mislabeled as non-canceled by binary classifiers.
 
 This repository implements an end-to-end **survival analysis (time-to-event)** framework coupled with **time-dependent explainable AI (XAI)** tools (**SurvPFI** and **SurvPDP**) across two structurally distinct empirical cohorts:
-- **Dataset 1 (Antonio et al., 2019):** Portuguese Resort & City Hotels ($N = 119,390$, 32 attributes, strict deposit policies).
-- **Dataset 2 (Raza et al., 2023):** International Hotel Cohort ($N = 36,275$, 19 attributes, dynamic ADR pricing without deposit filters).
+- **Empirical Cohort (Antonio et al., 2019):** Real-world Resort & City Hotel booking transactions ($N = 119,390$, 31 covariates) with verified timestamps for booking creation, arrival, and status updates, avoiding heuristic midpoint imputation.
 
 ---
 
@@ -31,6 +30,7 @@ This repository implements an end-to-end **survival analysis (time-to-event)** f
 │   ├── sn-article.pdf                   # Compiled 18-page publication PDF
 │   ├── sn-bibliography.bib              # BibTeX literature database
 │   ├── fig_motivation.png               # Figure 1: Censoring and time-to-event formulation
+│   ├── fig_calibration_curves.png       # Figure 4: Probability calibration curves across time horizons
 │   ├── fig_survpfi_ds1.png              # Figure 4: Time-dependent SurvPFI (Dataset 1 - Oblique RSF)
 │   ├── fig_survpfi_ds2.png              # Figure 5: Time-dependent SurvPFI (Dataset 2 - Cond. Forest)
 │   ├── fig_survpdp_ds1.png              # Figure 6: Marginal SurvPDP profiles (Dataset 1 - Oblique RSF)
