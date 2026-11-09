@@ -1,89 +1,86 @@
-\documentclass[10.5pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{geometry}
-\geometry{top=1.6cm, bottom=1.6cm, left=2.0cm, right=2.0cm}
+\geometry{top=1.3cm, bottom=1.3cm, left=1.8cm, right=1.8cm}
 \usepackage{times}
+\usepackage{microtype}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.35em}
+\setlength{\parskip}{0.28em}
 
 \begin{document}
 
 \begin{flushright}
     \textbf{Mustafa Cavus, Ph.D.} \\
     Eskisehir Technical University, Department of Statistics, 26555 Eskisehir, T\"urkiye \\
-    \textbf{Email:} \href{mailto:mustafacavus@eskisehir.edu.tr}{mustafacavus@eskisehir.edu.tr} \quad $\vert$ \quad \textbf{Date:} September 16, 2026
+    \textbf{Email:} \href{mailto:mustafacavus@eskisehir.edu.tr}{mustafacavus@eskisehir.edu.tr} \quad $\vert$ \quad \textbf{Date:} November 9, 2026
 \end{flushright}
 
-\vspace{-0.3cm}
+\vspace{-0.35cm}
 \hrule
-\vspace{0.25cm}
+\vspace{0.2cm}
 
 \textbf{To:} \\
-Guest Editors, Special Issue on ``Responsible and Trustworthy Artificial Intelligence in Tourism and Hospitality'' \\
-Editors-in-Chief, \textit{Electronic Markets}, Springer Nature
+Guest Editors, Special Collection on ``Ethics of Digital Transformation in Tourism and Hospitality'' \\
+Editors-in-Chief, \textit{Information Technology \& Tourism}, Springer Nature
 
-\textbf{Subject:} Submission of Original Research Article for Special Issue Consideration
+\textbf{Subject:} Submission of Original Research Article for Special Collection Consideration
 
 Dear Guest Editors and Editorial Board,
 
-I am pleased to submit our original research manuscript entitled \textbf{``Explainable Hotel Booking Cancellation Prediction Models: Towards Trustworthy Survival Analysis in Hospitality''} for consideration for publication in \textit{Electronic Markets} within the Special Issue on \textbf{``Responsible and Trustworthy Artificial Intelligence in Tourism and Hospitality''}.
+I am pleased to submit my original research manuscript entitled \textbf{``Explainable Hotel Booking Cancellation Prediction Models: Towards Trustworthy Survival Analysis in Hospitality''} for consideration in \textit{Information Technology \& Tourism} within the Special Collection on \textbf{``Ethics of Digital Transformation in Tourism and Hospitality''}.
 
-As predictive algorithms increasingly govern hotel revenue management, reliance on opaque ``black-box'' systems creates acute vulnerabilities regarding operational stability, customer trust, and algorithmic accountability. Traditional hospitality literature frames cancellation forecasting as a static binary classification problem, which ignores \textit{when} attrition events occur and introduces systematic predictive bias by treating active, right-censored bookings as non-canceled. To operationalize the core tenets of Responsible and Trustworthy AI, this study introduces an end-to-end explainable time-to-event (survival analysis) framework delivering three primary contributions:
+As digital platforms and intelligent intermediaries increasingly govern hospitality operations, delegating capacity allocation and pricing to opaque ``black-box'' predictive models creates severe ethical vulnerabilities. Miscalibrated attrition forecasts lead directly to aggressive overbooking, guest displacement, breach of consumer trust, and acute consumer insecurity. Traditional hospitality literature frames cancellation forecasting as a static binary classification problem, which ignores the temporal progression of cancellation risks and introduces systematic predictive bias by treating active, right-censored reservations as non-canceled. 
+
+To operationalize the core principles of ethical artificial intelligence, transparency, and algorithmic accountability in hospitality, this study introduces an explainable time-to-event (survival analysis) framework delivering the following core contributions:
 \begin{enumerate}
     \setlength{\itemsep}{0pt}
-    \setlength{\parskip}{1pt}
-    \item We reframe hotel cancellation prediction as a continuous time-to-event problem, benchmarking 10 survival algorithms across two structurally distinct datasets. We demonstrate that while tree ensembles maximize discriminative ranking, Oblique Random Survival Forests and Conditional Survival Forests achieve superior probability calibration, which is critical for revenue management.
-    \item We introduce Survival Permutation Feature Importance and Partial Dependence Survival Profiles to hospitality. These methods track the evolving marginal impact of covariates across the booking lifecycle, empirically unmasking compounding price elasticity near check-in and detecting policy-driven structural anomalies.
-    \item We bridge algorithmic outputs with operational practice, demonstrating how auditable survival curves enable dynamic overbooking quotas, optimal re-marketing windows, and trustworthy algorithmic governance.
+    \setlength{\parskip}{0.5pt}
+    \item \textbf{Continuous Survival Formulation without Imputation Bias:} We reframe cancellation forecasting as a continuous time-to-event problem evaluated on a large-scale empirical cohort with verified timestamps ($N = 119{,}390$), completely eliminating synthetic imputation artifacts.
+    \item \textbf{Probability Calibration as an Ethical Safeguard:} Through 100-replicate non-parametric bootstrap resampling, omnibus Friedman testing, and empirical reliability diagrams across operational planning horizons ($30, 60, 90,$ and $180$ days), we uncover a critical trade-off: while standard Random Survival Forests maximize discriminative ranking, Oblique Random Survival Forests achieve superior probability calibration. Calibrated probabilities provide hospitality managers with an ethics-by-design mechanism that prevents erratic overbooking and mitigates consumer insecurity.
+    \item \textbf{Continuous XAI for Algorithmic Auditing:} We introduce time-dependent Survival Permutation Feature Importance and Partial Dependence Survival Profiles. These continuous explainers decode non-linear risk dynamics and successfully detect structural policy anomalies, unmasking why non-refundable rates exhibited elevated cancellation hazards due to speculative intermediary block bookings.
 \end{enumerate}
 
-\textbf{Suggested Handling Editors:}
+\textbf{Special Collection Guest Editors:}
 \begin{itemize}
     \setlength{\itemsep}{0pt}
-    \setlength{\parskip}{1pt}
-    \item \textbf{Prof. Dr. Rainer Alt} (Editor-in-Chief, \textit{Electronic Markets}), Leipzig University, Germany. \\
-    \textit{Expertise:} Electronic markets, digital business models, and IT-driven operational governance.
-    \item \textbf{Special Issue Guest Editor(s):} Lead Guest Editor handling ``Responsible and Trustworthy Artificial Intelligence in Tourism and Hospitality''.
+    \setlength{\parskip}{0.5pt}
+    \item \textbf{Dr. Boyu Lin} (Guest Editor), Macao University of Tourism, Macao.
+    \item \textbf{Prof. Woojin Lee}, Arizona State University, USA $\vert$ \textbf{Prof. Nao Li}, Beijing Technology and Business University, China $\vert$ \textbf{Prof. Lu Lu}, Temple University, USA.
 \end{itemize}
 
 \textbf{Suggested Potential Reviewers:}
 \begin{itemize}
     \setlength{\itemsep}{0pt}
-    \setlength{\parskip}{1pt}
+    \setlength{\parskip}{0.5pt}
     \item \textbf{Nuno Antonio, Ph.D.} -- Nova Information Management School (NOVA IMS), Lisbon, Portugal. \\
-    \textit{Email:} \href{mailto:nantonio@novaims.unl.pt}{nantonio@novaims.unl.pt} \\
-    \textit{Expertise:} Hotel cancellation prediction, machine learning in revenue management, hospitality data analytics.
-    \item \textbf{Martin Falk, Ph.D.} -- School of Business, USN School of Business, University of South-Eastern Norway. \\
-    \textit{Email:} \href{mailto:martin.falk@usn.no}{martin.falk@usn.no} \\
-    \textit{Expertise:} Tourism economics, econometric modeling of cancellation behavior, booking channels.
+    \textit{Email:} \href{mailto:nantonio@novaims.unl.pt}{nantonio@novaims.unl.pt} \quad $\vert$ \quad \textit{Expertise:} Hotel cancellation prediction, machine learning in hospitality analytics.
+    \item \textbf{Martin Falk, Ph.D.} -- School of Business, University of South-Eastern Norway, Norway. \\
+    \textit{Email:} \href{mailto:martin.falk@usn.no}{martin.falk@usn.no} \quad $\vert$ \quad \textit{Expertise:} Tourism economics, booking channel dynamics, econometric cancellation modeling.
     \item \textbf{Apostolos Ampountolas, Ph.D.} -- Boston University, School of Hospitality Administration, USA. \\
-    \textit{Email:} \href{mailto:aampount@bu.edu}{aampount@bu.edu} \\
-    \textit{Expertise:} Revenue management, hospitality demand forecasting, machine learning predictive analytics.
-    
+    \textit{Email:} \href{mailto:aampount@bu.edu}{aampount@bu.edu} \quad $\vert$ \quad \textit{Expertise:} Capacity governance, hospitality demand forecasting, predictive analytics.
 \end{itemize}
 
 \textbf{Author Declarations:}
 \begin{itemize}
     \setlength{\itemsep}{0pt}
-    \setlength{\parskip}{1pt}
-    \item This manuscript represents original work that has not been published previously and is not under consideration elsewhere.
-    \item The author has approved the manuscript and agrees with its submission to \textit{Electronic Markets}.
+    \setlength{\parskip}{0.5pt}
+    \item This manuscript represents original work not published previously and not currently under consideration elsewhere.
+    \item The author approves the manuscript and agrees with its submission to \textit{Information Technology \& Tourism}.
     \item The author declares no conflicts of interest or competing financial interests with the suggested reviewers.
-    \item To ensure transparency and reproducibility, all replication code and pipelines are publicly accessible via an anonymized open science repository: \url{https://anonymous.4open.science/r/explainable-hotel-booking-cancellation-predictive-models-1B81}.
+    \item To ensure open science, auditability, and full reproducibility, all source code and experimental pipelines are publicly available at: \href{https://github.com/mcavs/explainable-hotel-booking-cancellation-predictive-models}{GitHub Repository (mcavs/explainable-hotel-booking-cancellation-predictive-models)}.
 \end{itemize}
 
-Thank you very much for your time, consideration, and handling of our manuscript.
+Thank you very much for your time, consideration, and editorial handling of this manuscript.
 
-\vspace{0.2cm}
+\vspace{0.15cm}
 Kind regards,
 
 \textbf{Mustafa Cavus, Ph.D.} \\
-Eskisehir Technical University\\ 
-Department of Statistics \\
+Eskisehir Technical University, Department of Statistics, Eskisehir, T\"urkiye \\
 Email: \href{mailto:mustafacavus@eskisehir.edu.tr}{mustafacavus@eskisehir.edu.tr}
 
 \end{document}
