@@ -1,39 +1,28 @@
-# Operating System
+# Operating System Files
 .DS_Store
 Thumbs.db
 
-# LaTeX build artifacts
-latex/*.aux
-latex/*.log
-latex/*.out
-latex/*.toc
-latex/*.synctex.gz
-latex/*.fdb_latexmk
-latex/*.fls
-*.aux
-*.log
-*.out
-
-# Python / Local helper scripts
-*.py
-scratch/
-test_*
-
-# Logs and temporary files
-*.txt
-*.docx
-
-# Heavy data, models and explainers (to avoid GitHub 100MB limit)
-datasets/
-models/
-explainers/
+# Manuscript and submission folders
+JDSA-submission/
+latex/
 papers/
+conference_paper.docx
 
-# Scripts for scratch edits
-fix*.R
-update*.R
-add*.R
-insert*.R
-remove*.R
-restore*.R
-restructure*.R
+# Large datasets and external raw data
+datasets/
+
+# Temporary logs, scratch scripts, and root helper scripts
+*.txt
+*.py
+*.R
+!scripts/*.R
+!scripts/*.py
+
+# Scratch, intermediate models and explainers
+scratch/
+explainers/
+models/
+test_*.*
+
+# Dataset 2 results
+results/*ds2*

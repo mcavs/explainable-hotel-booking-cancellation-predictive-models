@@ -22,29 +22,26 @@ This repository implements an end-to-end **survival analysis (time-to-event)** f
 ## Repository Architecture
 
 ```text
-├── JDSA-submission/                     # Formatted manuscript for submission
-│   ├── sn-article-JDSA.tex              # Main Springer Nature LaTeX source (native TikZ)
-│   ├── sn-article-JDSA.pdf              # Compiled 21-page publication PDF
-│   └── sn-bibliography.bib              # BibTeX literature database
-├── latex/                               # Mirror LaTeX source, styles, and figures
-│   ├── sn-article.tex                   # Springer Nature manuscript
-│   ├── sn-article.pdf                   # Compiled PDF
-│   ├── fig_calibration_curves.png       # Figure 2: Probability calibration curves across time horizons
-│   ├── fig_survpfi_ds1.png              # Figure 3: Time-dependent SurvPFI (Oblique RSF)
-│   └── fig_survpdp_ds1.png              # Figure 4: Marginal SurvPDP profiles (Oblique RSF)
+├── datasets/                            # Empirical hotel reservation transactions
+│   ├── hotels.csv                       # Resort & City Hotel empirical cohort (Antonio et al., 2019)
+│   └── splits/                          # Stratified train/test partition indices
 ├── scripts/                             # Reproducible R experimental pipeline
 │   ├── 00_install_packages.R            # Automated dependency installation
 │   ├── 01_mlr3_experiment.R             # Data preprocessing, task creation, and 10-model training
-│   ├── 02_eval_explain.R                # Evaluation metrics calculation and explainer generation
+│   ├── 02_eval_explain.R                # Out-of-sample evaluation metrics calculation
 │   ├── 03_explainers_fixed.R            # Robust survival explainer wrappers
 │   ├── 05_survpfi_only.R                # Continuous SurvPFI computation across time horizons
 │   ├── bootstrap_evaluation.R           # 100-replicate non-parametric bootstrap resampling
 │   └── hypothesis_testing.R             # Omnibus Friedman test and pairwise Wilcoxon signed-rank tests
-├── results/                             # Benchmark evaluation outputs and explanations
-│   ├── performance_ds1.csv              # Out-of-sample benchmark metrics across 10 survival models
-│   ├── survpdp_values_vanilla_aorsf_ds1.csv   # SurvPDP marginal profile values (Oblique RSF)
+├── results/                             # Benchmark evaluation outputs and model explanations
+│   ├── performance_all.csv              # Evaluated metrics across all benchmarked survival models
+│   ├── performance_ds1.csv              # Out-of-sample benchmark metrics for empirical cohort
+│   ├── ds1_boot_statistics.csv          # Bootstrap means, standard deviations, and 95% CIs
+│   ├── ds1_cindex_boot_matrix.rds       # Bootstrap iteration performance matrix (100 replicates)
+│   ├── calibration_data_ds1.csv         # Decile-binned predicted vs. Kaplan-Meier observed probabilities
+│   ├── survpdp_values_vanilla_aorsf_ds1.csv   # Marginal SurvPDP profiles (Oblique RSF)
 │   ├── pfi_values_*.csv                 # Time-dependent Permutation Feature Importance tables
-│   └── ds1_cindex_boot_matrix.rds       # Bootstrap iteration performance matrix
+│   └── plots/                           # Generated empirical calibration curves and visual assets
 └── README.md
 ```
 
