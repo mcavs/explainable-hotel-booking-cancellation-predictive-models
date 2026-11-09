@@ -1,45 +1,50 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{geometry}
 \geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
-\usepackage{times}
+\usepackage{charter}
 \usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.8em}
 
 \begin{document}
 
 \begin{center}
-    \vspace*{1cm}
-    
-    {\LARGE \textbf{Title Page}}
-    
-    \vspace{1.5cm}
-    
     {\Large \textbf{Explainable Hotel Booking Cancellation Prediction Models: Towards Trustworthy Survival Analysis in Hospitality}}
     
     \vspace{1.5cm}
     
-    \textbf{Mustafa Cavus}
-    
-    \vspace{0.8cm}
-    
-    Eskisehir Technical University, Department of Statistics, 26555 Eskisehir, T\"urkiye\\
-    \textbf{Email:} \href{mailto:mustafacavus@eskisehir.edu.tr}{mustafacavus@eskisehir.edu.tr} \\
-    \textbf{ORCID:} \href{https://orcid.org/0000-0002-6172-5449}{0000-0002-6172-5449}
-    
-    \vspace{2cm}
-    
-    \begin{minipage}{0.9\textwidth}
-    \textbf{Declarations / Notes:}
-    \begin{itemize}
-        \item \textbf{Special Issue:} "Responsible and Trustworthy Artificial Intelligence in Tourism and Hospitality"
-        \item \textbf{Manuscript Type:} Original Research Article
-        \item \textbf{Conflict of Interest:} The author declares no competing interests.
-        \item \textbf{Funding:} This research received no external funding.
-    \end{itemize}
-    \end{minipage}
-
+    \textbf{Mustafa Cavus}\textsuperscript{1,*}\\
+    \vspace{0.2cm}
+    \textsuperscript{1}Department of Statistics, Eskisehir Technical University, 26555 Eskisehir, T\"urkiye \\
+    \vspace{0.3cm}
+    \textsuperscript{*}Corresponding Author: \href{mailto:mustafacavus@eskisehir.edu.tr}{mustafacavus@eskisehir.edu.tr} \\
+    ORCID: \url{https://orcid.org/0000-0002-7656-5745}
 \end{center}
+
+\vspace{1.5cm}
+
+\section*{Statements and Declarations}
+
+\textbf{Funding} \\
+The author declares that no funds, grants, or other financial support were received during the preparation of this manuscript.
+
+\textbf{Competing Interests} \\
+The author has no competing financial or non-financial interests to declare that are relevant to the content of this article.
+
+\textbf{Author Contributions} \\
+Mustafa Cavus is the sole author and is exclusively responsible for the study conception, methodological framework design, statistical survival modeling, model explainability workflows, empirical data analysis, and manuscript drafting and revisions.
+
+\textbf{Data Availability} \\
+The dataset analyzed during the current study is publicly available in the ScienceDirect repository via \textit{Data in Brief} under the persistent identifier DOI: \url{https://doi.org/10.1016/j.dib.2018.11.126}.
+
+\textbf{Code Availability} \\
+The complete reproducible experimental pipeline, machine learning tasks, survival model training routines, and time-dependent explainer scripts are openly available in the study's repository: \href{https://github.com/mcavs/explainable-hotel-booking-cancellation-predictive-models}{https://github.com/mcavs/explainable-hotel-booking-cancellation-predictive-models}.
+
+\textbf{Target Journal and Collection} \\
+Submitted for consideration to \textit{Information Technology \& Tourism} (Springer Nature) for the Special Collection on \textbf{``Ethics of Digital Transformation in Tourism and Hospitality''}.
 
 \end{document}
