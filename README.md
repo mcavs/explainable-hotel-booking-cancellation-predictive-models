@@ -138,17 +138,3 @@ bibtex sn-article
 pdflatex -interaction=nonstopmode sn-article.tex
 pdflatex -interaction=nonstopmode sn-article.tex
 ```
-
----
-
-## Citation & Contact
-
-If you use this codebase or methodology in your research, please cite:
-
-```bibtex
-@article{hotel_cancellation_tte_2026,
-  title  = {Explainable Hotel Booking Cancellation Prediction Models: Towards Trustworthy Survival Analysis in Hospitality},
-  author = {Cavus, Mustafa},
-  year   = {2026}
-}
-```
